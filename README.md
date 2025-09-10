@@ -1,4 +1,4 @@
-# WebFlux Playground
+# WebFlux Playground - Section 1 ONLY
 
 A small Spring Boot WebFlux playground that demonstrates both reactive (WebClient) and traditional (blocking RestClient) HTTP clients interacting with an external service.
 
