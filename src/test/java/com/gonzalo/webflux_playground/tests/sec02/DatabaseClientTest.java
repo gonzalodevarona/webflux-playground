@@ -1,7 +1,6 @@
 package com.gonzalo.webflux_playground.tests.sec02;
 
 import com.gonzalo.webflux_playground.sec02.dto.OrderDetails;
-import com.gonzalo.webflux_playground.sec02.repository.CustomerRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
