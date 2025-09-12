@@ -113,4 +113,31 @@ public class CustomerServiceTest {
                 .jsonPath("$.name").isEqualTo("gonza")
                 .jsonPath("$.email").isEqualTo("gonza@gmail.com");
     }
+
+    @Test
+    public void customerNotFound() {
+
+        // get
+        this.client.get()
+                .uri("/customers/11")
+                .exchange()
+                .expectStatus().isNotFound()
+                .expectBody().isEmpty();
+
+        // put
+        var dto = new CustomerDto(null, "gonza", "gonza@gmail.com");
+        this.client.put()
+                .uri("/customers/11")
+                .bodyValue(dto)
+                .exchange()
+                .expectStatus().isNotFound()
+                .expectBody().isEmpty();
+
+        // delete
+        this.client.delete()
+                .uri("/customers/11")
+                .exchange()
+                .expectStatus().isNotFound()
+                .expectBody().isEmpty();
+    }
 }
