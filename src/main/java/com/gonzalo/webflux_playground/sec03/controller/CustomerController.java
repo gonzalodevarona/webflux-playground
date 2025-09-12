@@ -3,10 +3,13 @@ package com.gonzalo.webflux_playground.sec03.controller;
 import com.gonzalo.webflux_playground.sec03.dto.CustomerDto;
 import com.gonzalo.webflux_playground.sec03.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("customers")
@@ -18,6 +21,14 @@ public class CustomerController {
     @GetMapping
     public Flux<CustomerDto> allCustomers() {
         return this.customerService.getAllCustomers();
+    }
+
+    @GetMapping("paginated")
+    public Mono<Page<CustomerDto>> allCustomers(
+            @RequestParam(defaultValue = "1") Integer page,
+            @RequestParam(defaultValue = "3") Integer size
+    ) {
+        return this.customerService.getAllCustomers(page, size);
     }
 
     @GetMapping("{id}")
